@@ -3,7 +3,7 @@ require 'json/pure'
 
 use Rack::Static,
   :root => File.dirname(__FILE__),
-  :urls => %w(/css /js)
+  :urls => %w(/css /js /img)
   
 map '/' do
   run Proc.new { |env|
