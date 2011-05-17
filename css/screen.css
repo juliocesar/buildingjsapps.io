@@ -1,0 +1,105 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+input, select { vertical-align: middle; }
+
+
+/**
+ * Font normalization inspired by YUI Library's fonts.css: developer.yahoo.com/yui/
+ */
+
+body { font:13px/1.231 sans-serif; *font-size:small; } /* Hack retained to preserve specificity */
+select, input, textarea, button { font:99% sans-serif; }
+
+/* Normalize monospace sizing:
+   en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active { outline: none; }
+
+ul, ol { margin-left: 2em; }
+ol { list-style-type: decimal; }
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+/* These selection declarations have to be separate
+   No text-shadow: twitter.com/miketaylr/status/12228805301
+   Also: hot pink! */
+::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
+::selection { background:#FF5E99; color:#fff; text-shadow: none; }
+
+a:link { -webkit-tap-highlight-color: #FF5E99; }
+button {  width: auto; overflow: visible; }
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+body { background: #575757 }
+
+h1, h2 { font-family: 'Holtwood One SC' }
+#intro { text-align: center; margin-top: 27%; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); -webkit-animation: fail 10s infinite; }
+#intro h1 { font-size: 3rem }
+#intro h2 { font-size: 2rem }
+#veil { opacity: 0; pointer-events: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #000; -webkit-animation: fadeout 5s 1 }
+
+#intro, #veil { display: none }
+
+#billboard  { position: fixed; bottom: 300px; left: 100px; width: 800px; padding: 1rem; background: #a5a5a5; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); -webkit-animation: fail 10s infinite;}
+#building   { position: fixed; bottom: 0; left: 100px; height: 100px; width: 800px }
+#building, #billboard { background: #101010; -webkit-box-shadow: 0 0 2rem rgba(0, 0, 0, 1) }
+#billboard h1 { font-family: 'Oswald'; font-weight: bold; font-size: 2rem; text-transform: uppercase;}
+
+@-webkit-keyframes fail {
+  0%    { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  14%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  15%   { text-shadow: 0 0 5rem rgba(255, 255, 255, 0.5) }
+  16%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  25%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  26%   { text-shadow: 0 0 5rem rgba(255, 255, 255, 0.5) }  
+  27%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  74%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  75%   { text-shadow: 0 0 5rem rgba(255, 255, 255, 0.5) }
+  76%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  100%  { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+}
+
+@-webkit-keyframes fadeout {
+  0%    { opacity: 1 }
+  50%   { opacity: 1 }
+  100%  { opacity: 0 }
+}
