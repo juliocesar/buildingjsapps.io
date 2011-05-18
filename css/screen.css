@@ -82,9 +82,9 @@ em { font-weight: bold }
 #intro, #veil { 
   position: absolute;
   pointer-events: none;
-  -webkit-transition: opacity 0.5s linear;
-  -moz-transition:    opacity 0.5s linear;
-  transition:         opacity 0.5s linear  
+  -webkit-transition: opacity 1s linear;
+  -moz-transition:    opacity 1s linear;
+  transition:         opacity 1s linear  
 }
 #veil { top: 0; right: 0; bottom: 0; left: 0; opacity: 1; background: #000; z-index: 9999 }
 #billboard  { 
