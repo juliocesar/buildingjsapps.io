@@ -8,6 +8,14 @@
   	<script src="/js/modernizr-1.7.min.js"></script>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Holtwood+One+SC|Bangers|Six+Caps|Didact+Gothic">
     <link rel="stylesheet" href="/css/screen.css" media="screen">
+    <script>
+      var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-23425751-1']); _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body>
     <div id="veil"></div>
@@ -70,15 +78,6 @@
         document.body.removeChild(veil);
         document.body.removeChild(intro);
       }
-
-      var _gaq = _gaq || [];
-       _gaq.push(['_setAccount', 'UA-23425751-1']);
-       _gaq.push(['_trackPageview']);
-       (function() {
-         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-       })();
     </script>
   </body>
 </html>
