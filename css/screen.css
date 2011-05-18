@@ -62,8 +62,8 @@ nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
 /* These selection declarations have to be separate
    No text-shadow: twitter.com/miketaylr/status/12228805301
    Also: hot pink! */
-::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
-::selection { background:#FF5E99; color:#fff; text-shadow: none; }
+::-moz-selection{ background: #696969; color: #a8a8a8; text-shadow: none; }
+::selection { background: #696969; color: #a8a8a8; text-shadow: none }
 
 a:link { -webkit-tap-highlight-color: #FF5E99; }
 button {  width: auto; overflow: visible; }
@@ -76,15 +76,18 @@ a { display: inline-block; padding: 0.05em 0.25em 0.15em; border-radius: 0.5em; 
 
 h1, h2 { font-family: 'Holtwood One SC' }
 em { font-weight: bold }
-#intro { text-align: center; margin-top: 27%; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); -webkit-animation: fail 10s infinite; }
+#intro { width: 700px; top: 50%; left: 50%; margin: -100px 0 0 -350px; text-align: center; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); z-index: 99999; opacity: 0; -webkit-animation: fail 5s infinite }
+#intro {
+  -webkit-transition: opacity 0.5s linear;
+  -moz-transition:    opacity 0.5s linear;
+  transition:         opacity 0.5s linear
+}
 #intro h1 { font-size: 3rem }
 #intro h2 { font-size: 2rem }
-#veil { opacity: 0; pointer-events: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #000; -webkit-animation: fadeout 5s 1 }
-#intro, #veil { display: none }
-
-#billboard  { -webkit-transform: rotate(-2deg); -moz-transform: rotate(-2deg); transform: rotate(-2deg) }
-#billboard:before { position: absolute; height: 100%; width: 100%; border: 3px solid black; background: #000; z-index: 100 }
+#intro, #veil { position: absolute }
+#veil { top: 0; right: 0; bottom: 0; left: 0; opacity: 1; pointer-events: none; background: #000; z-index: 9999 }
 #billboard  { 
+  -webkit-transform: rotate(-2deg); -moz-transform: rotate(-2deg); transform: rotate(-2deg);
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 5px 10px 10px rgba(0, 0, 0, 0.5), inset 0px 0px 40px rgba(0, 0, 0, 0.2);
   -moz-box-shadow:    0 0 20px rgba(0, 0, 0, 0.8), 5px 10px 10px rgba(0, 0, 0, 0.5), inset 0px 0px 40px rgba(0, 0, 0, 0.2);
   box-shadow:         0 0 20px rgba(0, 0, 0, 0.8), 5px 10px 10px rgba(0, 0, 0, 0.5), inset 0px 0px 40px rgba(0, 0, 0, 0.2)
@@ -110,17 +113,17 @@ em { font-weight: bold }
 #sign-up:hover  { -webkit-transform: translateY(5px); -moz-transform: translateY(5px); transform: translateY(5px) }
 
 @-webkit-keyframes fail {
-  0%    { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  14%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  15%   { text-shadow: 0 0 5rem rgba(255, 255, 255, 0.5) }
-  16%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  25%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  26%   { text-shadow: 0 0 5rem rgba(255, 255, 255, 0.5) }  
-  27%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  74%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  75%   { text-shadow: 0 0 5rem rgba(255, 255, 255, 0.5) }
-  76%   { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
-  100%  { text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5) }
+  0%    { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  14%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  15%   { text-shadow: 0 0 3rem rgba(255, 255, 255, 0.5) }
+  16%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  25%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  26%   { text-shadow: 0 0 3rem rgba(255, 255, 255, 0.5) }  
+  27%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  74%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  75%   { text-shadow: 0 0 3rem rgba(255, 255, 255, 0.5) }
+  76%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  100%  { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
 }
 
 @-webkit-keyframes fadeout {
@@ -128,6 +131,3 @@ em { font-weight: bold }
   50%   { opacity: 1 }
   100%  { opacity: 0 }
 }
-
-
-

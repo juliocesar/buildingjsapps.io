@@ -24,11 +24,11 @@
         <li>Backbone.js</li>
         <li>- HTML5 JS APIs</li>
         <li>- Structure</li>
-        <li>- Performance</li>        
-        <li>- Mobile</li>        
+        <li>- Performance</li>
+        <li>- Mobile</li>
         <li>- Fancy CSS3</li>
-        <li>- Best practices</li>                
-      </ul>      
+        <li>- Best practices</li>
+      </ul>
       <p id="when">SAT 04/06 / 9AM - 3:30PM</p>
       <p id="where">
         235 Jones Street, Sydney CBD. UTS Building Room CB10.02.320
@@ -46,7 +46,22 @@
       <p id="questions">
         Questions? Send me <a href="mailto:julio@awesomebydesign.com">an email</a>.
       </p>
-      <a id="sign-up" href="http://buildingjsapps.eventbrite.com/">Sign up</a>      
+      <a id="sign-up" href="http://buildingjsapps.eventbrite.com/">Sign up</a>
     </section>
+    <script>
+      function ready(f){setTimeout(/in/(document.readyState)?ready:f,9,f);}
+      var veil = document.getElementById('veil'), intro = document.getElementById('intro');
+      if (!(/seen/).test(document.cookie)) {
+        intro.style.opacity = 1;
+        ready(function() {
+          document.body.removeChild(veil);
+          document.body.removeChild(intro);
+          document.cookie = '';
+        });
+      } else {
+        document.body.removeChild(veil);
+        document.body.removeChild(intro);
+      }
+    </script>
   </body>
 </html>
