@@ -50,19 +50,19 @@
     </section>
     <script>
       var veil = document.getElementById('veil'), intro = document.getElementById('intro');
+      window.addEventListener('load', function() {
+        intro.style.opacity = 0;
+        veil.style.opacity = 0;              
+        alert('changed');
+        setTimeout(function() {
+          document.body.removeChild(veil);
+          document.body.removeChild(intro);              
+        }, 1500);              
+        document.cookie = 'seen';        
+      });
       if (!(/seen/).test(document.cookie)) {
         setTimeout(function() {
           intro.style.opacity = 1;
-          document.body.addEventListener('load', function() {
-            intro.style.opacity = 0;
-            veil.style.opacity = 0;              
-            alert('changed');
-            setTimeout(function() {
-              document.body.removeChild(veil);
-              document.body.removeChild(intro);              
-            }, 1500);              
-          });
-          document.cookie = 'seen';
         }, 200);
       } else {
         document.body.removeChild(veil);
