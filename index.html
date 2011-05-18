@@ -52,12 +52,18 @@
       function ready(f){setTimeout(/in/(document.readyState)?ready:f,9,f);}
       var veil = document.getElementById('veil'), intro = document.getElementById('intro');
       if (!(/seen/).test(document.cookie)) {
-        intro.style.opacity = 1;
-        ready(function() {
-          document.body.removeChild(veil);
-          document.body.removeChild(intro);
-          document.cookie = '';
-        });
+        setTimeout(function() {
+          intro.style.opacity = 1;
+          ready(function() {
+            intro.style.opacity = 0
+            veil.style.opacity = 0;
+            setTimeout(function() {
+              document.body.removeChild(veil);
+              document.body.removeChild(intro);
+            }, 500);
+            document.cookie = '';
+          });
+        }, 200);
       } else {
         document.body.removeChild(veil);
         document.body.removeChild(intro);

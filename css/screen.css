@@ -77,14 +77,14 @@ a { display: inline-block; padding: 0.05em 0.25em 0.15em; border-radius: 0.5em; 
 h1, h2 { font-family: 'Holtwood One SC' }
 em { font-weight: bold }
 #intro { width: 700px; top: 50%; left: 50%; margin: -100px 0 0 -350px; text-align: center; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); z-index: 99999; opacity: 0; -webkit-animation: fail 5s infinite }
-#intro {
-  -webkit-transition: opacity 0.5s linear;
-  -moz-transition:    opacity 0.5s linear;
-  transition:         opacity 0.5s linear
-}
 #intro h1 { font-size: 3rem }
 #intro h2 { font-size: 2rem }
-#intro, #veil { position: absolute }
+#intro, #veil { 
+  position: absolute;
+  -webkit-transition: opacity 0.5s linear;
+  -moz-transition:    opacity 0.5s linear;
+  transition:         opacity 0.5s linear  
+}
 #veil { top: 0; right: 0; bottom: 0; left: 0; opacity: 1; pointer-events: none; background: #000; z-index: 9999 }
 #billboard  { 
   -webkit-transform: rotate(-2deg); -moz-transform: rotate(-2deg); transform: rotate(-2deg);
