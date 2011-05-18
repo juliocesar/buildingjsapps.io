@@ -55,13 +55,13 @@
         setTimeout(function() {
           intro.style.opacity = 1;
           ready(function() {
-            intro.style.opacity = 0
+            intro.style.opacity = 0;
             veil.style.opacity = 0;
             setTimeout(function() {
               document.body.removeChild(veil);
               document.body.removeChild(intro);
             }, 500);
-            document.cookie = '';
+            document.cookie = 'seen';
           });
         }, 200);
       } else {

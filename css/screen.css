@@ -76,7 +76,7 @@ a { display: inline-block; padding: 0.05em 0.25em 0.15em; border-radius: 0.5em; 
 
 h1, h2 { font-family: 'Holtwood One SC' }
 em { font-weight: bold }
-#intro { width: 700px; top: 50%; left: 50%; margin: -100px 0 0 -350px; text-align: center; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); z-index: 99999; opacity: 0; -webkit-animation: fail 5s infinite }
+#intro { width: 700px; top: 50%; left: 50%; margin: -100px 0 0 -350px; text-align: center; color: #f4f4f4; text-shadow: 0 0 12rem rgba(255, 255, 255, 0.5); z-index: 99999; opacity: 0; -webkit-animation: fail 5s infinite; -moz-animation: fail 5s infinite }
 #intro h1 { font-size: 3rem }
 #intro h2 { font-size: 2rem }
 #intro, #veil { 
@@ -126,8 +126,16 @@ em { font-weight: bold }
   100%  { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
 }
 
-@-webkit-keyframes fadeout {
-  0%    { opacity: 1 }
-  50%   { opacity: 1 }
-  100%  { opacity: 0 }
+@-moz-keyframes fail {
+  0%    { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  14%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  15%   { text-shadow: 0 0 3rem rgba(255, 255, 255, 0.5) }
+  16%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  25%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  26%   { text-shadow: 0 0 3rem rgba(255, 255, 255, 0.5) }  
+  27%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  74%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  75%   { text-shadow: 0 0 3rem rgba(255, 255, 255, 0.5) }
+  76%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
+  100%  { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
 }
