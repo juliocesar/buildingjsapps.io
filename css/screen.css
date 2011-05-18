@@ -69,7 +69,7 @@ a:link { -webkit-tap-highlight-color: #FF5E99; }
 button {  width: auto; overflow: visible; }
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
-html, body { height: 100%; width: 100% }
+html, body { height: 100%; width: 100%; overflow: hidden }
 body { background: #000 url(/img/wall.jpg) no-repeat center }
 
 a { display: inline-block; padding: 0.05em 0.25em 0.15em; border-radius: 0.5em; background: #696969; color: #a8a8a8; text-decoration: none }
