@@ -81,11 +81,12 @@ em { font-weight: bold }
 #intro h2 { font-size: 2rem }
 #intro, #veil { 
   position: absolute;
+  pointer-events: none;
   -webkit-transition: opacity 0.5s linear;
   -moz-transition:    opacity 0.5s linear;
   transition:         opacity 0.5s linear  
 }
-#veil { top: 0; right: 0; bottom: 0; left: 0; opacity: 1; pointer-events: none; background: #000; z-index: 9999 }
+#veil { top: 0; right: 0; bottom: 0; left: 0; opacity: 1; background: #000; z-index: 9999 }
 #billboard  { 
   -webkit-transform: rotate(-2deg); -moz-transform: rotate(-2deg); transform: rotate(-2deg);
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 5px 10px 10px rgba(0, 0, 0, 0.5), inset 0px 0px 40px rgba(0, 0, 0, 0.2);
