@@ -145,6 +145,14 @@ em { font-weight: bold }
   #billboard { -webkit-transform: rotate(-2deg) scale(0.8); -moz-transform: rotate(-2deg) scale(0.8); transform: rotate(-2deg) scale(0.8) }
 }
 
+@media only screen and (max-width: 1000px) {
+  #billboard { -webkit-transform: rotate(-2deg) scale(0.7); -moz-transform: rotate(-2deg) scale(0.7); transform: rotate(-2deg) scale(0.7) }
+}
+
+@media only screen and (max-width: 800px) {
+  #billboard { -webkit-transform: rotate(-2deg) scale(0.6); -moz-transform: rotate(-2deg) scale(0.6); transform: rotate(-2deg) scale(0.6) }
+}
+
 @media only screen and (max-width: 600px) {
   #billboard { -webkit-transform: rotate(-2deg) scale(0.5); -moz-transform: rotate(-2deg) scale(0.5); transform: rotate(-2deg) scale(0.5) }
 }
