@@ -140,3 +140,11 @@ em { font-weight: bold }
   76%   { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
   100%  { text-shadow: 0 0 20rem rgba(255, 255, 255, 0.5) }
 }
+
+@media only screen and (max-width: 1200px) {
+  #billboard { -webkit-transform: rotate(-2deg) scale(0.8); -moz-transform: rotate(-2deg) scale(0.8); transform: rotate(-2deg) scale(0.8) }
+}
+
+@media only screen and (max-width: 600px) {
+  #billboard { -webkit-transform: rotate(-2deg) scale(0.5); -moz-transform: rotate(-2deg) scale(0.5); transform: rotate(-2deg) scale(0.5) }
+}

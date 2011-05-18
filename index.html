@@ -49,20 +49,19 @@
       <a id="sign-up" href="http://buildingjsapps.eventbrite.com/">Sign up</a>
     </section>
     <script>
-      function ready(f){setTimeout(/in/(document.readyState)?ready:f,9,f);}
       var veil = document.getElementById('veil'), intro = document.getElementById('intro');
       if (!(/seen/).test(document.cookie)) {
         setTimeout(function() {
           intro.style.opacity = 1;
-          ready(function() {
+          document.body.addEventListener('load', function() {
             intro.style.opacity = 0;
-            veil.style.opacity = 0;
+            veil.style.opacity = 0;              
             setTimeout(function() {
               document.body.removeChild(veil);
-              document.body.removeChild(intro);
-            }, 1500);
-            document.cookie = 'seen';
+              document.body.removeChild(intro);              
+            }, 1500);              
           });
+          document.cookie = 'seen';
         }, 200);
       } else {
         document.body.removeChild(veil);
