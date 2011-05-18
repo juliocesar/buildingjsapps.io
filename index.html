@@ -60,7 +60,7 @@
       var veil = document.getElementById('veil'), intro = document.getElementById('intro');
       function hide() { intro.style.opacity = 0; veil.style.opacity = 0; document.cookie = 'seen'; }
       window.addEventListener('load',   hide);
-      document.addEventListener('load', hide);
+      document.body.addEventListener('load', hide);
       if (!(/seen/).test(document.cookie)) {
         setTimeout(function() {
           intro.style.opacity = 1;
