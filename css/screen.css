@@ -157,6 +157,8 @@ em { font-weight: bold }
   #billboard { -webkit-transform: rotate(-2deg) scale(0.6); -moz-transform: rotate(-2deg) scale(0.6); transform: rotate(-2deg) scale(0.6) }
 }
 
-@media only screen and (max-width: 600px) {
-  #billboard { -webkit-transform: rotate(-2deg) scale(0.5); -moz-transform: rotate(-2deg) scale(0.5); transform: rotate(-2deg) scale(0.5) }
+@media only screen and (max-device-width: 480px) {
+  #billboard { -webkit-transform: rotate(-2deg) scale(0.35); -moz-transform: rotate(-2deg) scale(0.35); transform: rotate(-2deg) scale(0.35) }
+  #billboard { margin-left: -210px } /* hack around the fixed width */
 }
+
