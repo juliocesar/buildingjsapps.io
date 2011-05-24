@@ -158,6 +158,7 @@ em { font-weight: bold }
 }
 
 @media only screen and (max-device-width: 480px) {
+  body { background: #000 url(/img/wall-halfsize.jpg) no-repeat center }  
   #billboard { -webkit-transform: rotate(-2deg) scale(0.35); -moz-transform: rotate(-2deg) scale(0.35); transform: rotate(-2deg) scale(0.35) }
   #billboard { margin-left: -210px } /* hack around the fixed width */
 }

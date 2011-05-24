@@ -60,12 +60,11 @@
       var veil = document.getElementById('veil'), intro = document.getElementById('intro');
       function hide() { intro.style.opacity = 0; veil.style.opacity = 0; document.cookie = 'seen'; }
       window.addEventListener('load', hide, false);
-      document.body.addEventListener('load', hide, false);
       intro.style.opacity = 1;
-      if ((/seen/).test(document.cookie)) {
-        document.body.removeChild(veil);
-        document.body.removeChild(intro);
-      }
+      // if ((/seen/).test(document.cookie)) {
+      //   document.body.removeChild(veil);
+      //   document.body.removeChild(intro);
+      // }        
     </script>
   </body>
 </html>
