@@ -19,7 +19,7 @@
       #index h1 { display: inline-block; padding: 0.10rem 0.5em; font-size: 1.2rem; background: #000; color: #fff; font-weight: normal }
       #index ul { margin: 0.5rem 0 0 0.50rem; list-style-type: none }
       #index li { margin: 0.25em 0; font-size: 0.9em;}
-      #content { padding: 1em; margin-left: 210px; padding-top: 50px; background: #fff; border-width: 0 1px 1px 1px; border-color: #ccc; border-style: solid; }
+      #content { padding: 1em; margin-left: 210px; padding-top: 50px; background: #fff; border-width: 0 1px 0px 1px; border-color: #ccc; border-style: solid; }
       #content > section { margin-bottom: 2em }
       #content h1 { font-size: 2.4rem }
       #content p  { margin: 0.5em 0; text-indent: 0.5em }
@@ -62,6 +62,21 @@
           <li>
             <a href="#backbone-routes">Backbone: Routes and Navigation</a>
           </li>
+          <li>
+            <a href="#css3-and-navigation">CSS3 and Navigation</a>
+          </li>
+          <li>
+            <a href="#performance">Performance</a>
+          </li>
+          <li>
+            <a href="#html5-apis">HTML5 APIs</a>
+          </li>
+          <li>
+            <a href="#mobile">Mobile JavaScript Apps</a>
+          </li>
+          <li>
+            <a href="#testing">Testing</a>
+          </li>
         </ul>
       </section>
     </section>
@@ -94,7 +109,7 @@
           </li>
         </ul>
         <p>
-          The essential is that whatever you build should not suck. Apply whatever approach
+          It's essential is that whatever you build should not suck. Apply whatever approach
           works best given what you're trying to achieve.
         </p>
       </section>
@@ -107,15 +122,15 @@
           from a server.
         </p>
         <p>
-          Go nuts! Clone it, read the source. <em>Write an app based on of it</em>. No amount of 
+          Go nuts! Clone it, read the source. <em>Write an app based on of it</em>. No amount of
           explanation can replace that.
         </p>
       </section>
-      
+
       <section id="backbone-models">
         <h1>III. Backbone: Models</h1>
         <p>
-          They're 50% of your data layer. The other 50% are 
+          They're 50% of your data layer. The other 50% are
           <a href="#backbone-collections">collections</a>. A model is what gives your JavaScript
           awareness of what it's dealing when it comes to raw data. Instead of manipulating
           pure JavaScript objects carrying properties and values, you got domain logic.
@@ -144,7 +159,7 @@
         want one. E.g.: application settings could be kept in a single model.
       </p>
       </section>
-      
+
       <section id="backbone-collections">
         <h1>IV. Backbone: Collections</h1>
         <p>
@@ -224,8 +239,148 @@
       <section id="backbone-routes">
         <h1>VI. Backbone: Routes and Navigation</h1>
         <p>
-          Backbone carries a `Router` class. This is where the state of your application will
-          live.
+          Backbone carries a `Router` class which we can use for creating the states that our application's
+          interface will have. If you look at how we did the screens for Listie, you'll notice that they're
+          all hidden by default.
+        </p>
+        <p>We declare our "URLs", like so:</p>
+        <pre><code>Router = Backbone.Router.extend({
+  routes : {
+    ''            : 'newList',
+    '/'           : 'newList',
+    '/browse'     : 'browse',
+    '/account'    : 'account',
+    '/lists/:id'  : 'show',
+    '/sign-out'   : 'signOut'
+  },</code></pre>
+        <p>
+          If you look at <a href="https://github.com/juliocesar/Listie/blob/master/views/application.erb#L90">the bottom</a>
+          of our <code>views/application.erb</code> template, you'll notice we're calling <code>Backbone.history.start()</code>.
+        </p>
+        <p>
+          That will basically kick-start our routes. Going to to the root URL for our application, the router will then look
+          for a method called <code>newList</code> and execute it.
+        </p>
+        <p>
+          Meaning, this is where you should put that sort of thing. Any triggers related to showing/hiding screens or parts of
+          it should live here.
+        </p>
+      </section>
+
+      <section id="css3-and-navigation">
+        <h1>CSS3 and Navigation</h1>
+        <p>
+          There's way more to CSS3 animations other than cool effects. Not that it needed to to be worth mentioning, anyway.
+        </p>
+        <p>
+          CSS3 is hardware accelerated on most modern phones and browsers. Which makes it the perfect tool for large screen transitions.
+          JavaScript is just about catching up with
+          <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame</a>.
+        </p>
+        <p>
+          In the context of applications, there is one specific property of interest: <code>(-webkit/-moz/-o/-transition)</code>.
+          Setting the transition property on an element determines how the element will react to changes made to that property.
+        </p>
+        <p>
+          Note that with every screen transition in listie, there's an animation that follows with it where it slides from
+          the left to the right, along with the opacity. That's done with
+          <a href="https://github.com/juliocesar/Listie/blob/master/public/css/screen.css#L122">this setting</a>.
+        </p>
+        <p>
+          By setting making all <code>section</code>s, invisible by default, and only a setting with class <code>current</code>
+          visible, we can effectively switch screens by controlling who has that class at any one time.
+        </p>
+      </section>
+
+      <section id="performance">
+        <h1>Performance</h1>
+        <p>
+          Performance in web applications is (almost) all about perceived performance. A well architected application will progressively
+          add itself to the screen in a way that it keeps the user entertained or paying attention, effectively reducing the impression
+          that it's slow.
+        </p>
+        <p>
+          Don't get me wrong: you still need to do things right and avoid any kind of stupid decision that would heavily impact
+          the application's load time.
+        </p>
+        <p>
+          One resource that we can use is a loader. A loader will, in a nutshell, load your scripts asynchronously and in parallel (not
+          as a rule though). I used <a href="http://yepnopejs.com/">yepnope.js</a> for Listie, simply because it's easy to use, it's
+          API is nice, and it integrates well with <a href="http://www.modernizr.com/">Modernizr</a>.
+        </p>
+        <p>
+          With yepnope, we can also be declarative about how our app loads. If you read
+          <a href="https://github.com/juliocesar/Listie/blob/master/views/application.erb#L65">the code towards the end</a> of your
+          application template, it pretty much explains itself.
+        </p>
+        <p>
+          Don't forget: <em>test</em> things, measure outcomes. A loader might yield worst results than bundling your JavaScripts together.
+        </p>
+      </section>
+
+      <section id="html5-apis">
+        <h1>HTML5 APIs</h1>
+        <p>
+          There's a whole bunch of new JavaScript APIs in HTML5. The two most reliable and practical are
+          <a href="http://diveintohtml5.org/geolocation.html">geolocation</a> and
+          <a href="http://diveintohtml5.org/storage.html">localStorage</a>. Yeah, there's also WebSockets, but things are looking weird
+          still as far as browser support goes.
+        </p>
+        <p>
+          Geolocation gives you reliable-ish positioning info, which often gets sent in HTTP requests so the server can use that info
+          to give you results that take your location into consideration (see the demo application).
+        </p>
+        <p>
+          It's not a direct port or anything, but in the absence of this feature, you can always use the
+          <a href="http://code.google.com/apis/maps/documentation/geocoding/">Google Geocoding API</a>. It's rarely a good idea to
+          geocode stuff on the server-side.
+        </p>
+        <p>
+          localStorage is a personal sweetheart of mine. It allows for a totally different and desirable way of doing things: you
+          develop your app down to the data level to operate locally, and only sync with the server on command or certain intervals.
+        </p>
+        <p>
+          Adding items to a list in Listie happens locally. The feedback when adding is instant. It also makes a lot of sense
+          for applications that don't need to submit data to a server at all.
+        </p>
+      </section>
+
+      <section id="mobile">
+        <h1>Mobile JavaScript Apps</h1>
+        <p>
+          The self-contained model works really well for mobile applications. People like when a mobile web application looks
+          and feels fast and familiar. Clever use of <a href="http://diveintohtml5.org/offline.html">HTML5 Manifest</a> caching
+          means you <em>can</em> deliver an experience as good as a native application.
+        </p>
+        <p>
+          I don't know how come not many people have kicked a fuss over it, but the
+          <a href="https://github.com/madrobby/zepto/tree/master/examples/iphone">iPhone example</a> in 
+          <a href="http://zeptojs.com/">Zepto.js</a>'s source is absolutely kick-ass. Smack Backbone on top of that and you have
+          a suite better/faster/hotter than jQuery Mobile.
+        </p>
+        <p>
+          The example is not dependant on Zepto. As a matter of fact the biggest deal in it is the CSS, and how clean it allows
+          the markup to be. Compared to the crazy nesting you're forced to do with jQuery Mobile, it's heaven.
+        </p>
+        <p>
+          Speaking of Zepto, do check it out. It's a worse jQuery, in a nutshell, but it performs way better in Webkit-powered
+          handsets and tablets, as it's aimed at these devices, rather than concerning itself with abstracting IE dumbness.
+        </p>
+      </section>
+
+      <section id="testing">
+        <h1>Testing</h1>
+        <p>
+          Testing JavaScript <em>libraries</em> is easy. Testing <em>JavaScript-heavy products</em> is not. It's getting easier
+          though, but still far from ideal.
+        </p>
+        <p>
+          The test suite becomes huge <em>very</em> fast. It becomes slow even faster, thanks to all the waiting time involved
+          in navigation switching, DOM manipulation, and whatnot.
+        </p>
+        <p>
+          The one suite I'll recommend is <a href="http://pivotal.github.com/jasmine/">Jasmine</a>. I will however recommend
+          that you strive to keep your code well-structured. It'll save you from needing to test a lot of stuff. There. I said it.
         </p>
       </section>
     </section>
