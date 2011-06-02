@@ -8,19 +8,23 @@
     <link href='http://fonts.googleapis.com/css?family=Puritan:regular,italic' rel='stylesheet'>
     <style>
       * { margin: 0; border: 0; padding: 0; font-size: 100% }
+      a, a:visited { color: inherit; text-decoration: none; border-bottom: 1px dotted #B3B3B3 }
+      em { font-weight: bold }
       html { background: #f9f9f9 }
       body { width: 920px; margin: 0 auto; color: #000; font-family: 'Puritan', sans-serif }
-      body > section { margin-top: 50px }
-      #meta { width: 200px; margin: 0; float: left }
+      #meta { width: 200px; margin-top: 50px; float: left }
       #meta header { margin-bottom: 2em }
       #meta header h1 { font-size: 1.4em; color: #000 }
       #meta aside { text-align: left; color: #b2b2b2 }
       #index h1 { display: inline-block; padding: 0.10rem 0.5em; font-size: 1.2rem; background: #000; color: #fff; font-weight: normal }
       #index ul { margin: 0.5rem 0 0 0.50rem; list-style-type: none }
-      #index a  { color: inherit; text-decoration: none; border-bottom: 1px dotted #ccc }
-      #content { padding: 1em; margin-left: 210px; background: #fff }
+      #index li { margin: 0.25em 0; font-size: 0.9em;}
+      #content { padding: 1em; margin-left: 210px; padding-top: 50px; background: #fff; border-width: 0 1px 1px 1px; border-color: #ccc; border-style: solid; }
+      #content > section { margin-bottom: 2em }
       #content h1 { font-size: 2.4rem }
       #content p  { margin: 0.5em 0; text-indent: 0.5em }
+      #content ul { margin-left: 0.5em; list-style: square inside }
+      #content pre { margin-left: 0.5em }
 
       @media all and (max-width: 1600px)  { body { width: 1300px } }
       @media all and (max-width: 1400px)  { body { width: 1200px } }
@@ -44,6 +48,19 @@
             <a href="#definition">Definition</a>
           </li>
           <li>
+            <a href="#our-app">Our application</a>
+          </li>
+          <li>
+            <a href="#backbone-models">Backbone: Models</a>
+          </li>
+          <li>
+            <a href="#backbone-collections">Backbone: Collections</a>
+          </li>
+          <li>
+            <a href="#backbone-views">Backbone: Views</a>
+          </li>
+          <li>
+            <a href="#backbone-routes">Backbone: Routes and Navigation</a>
           </li>
         </ul>
       </section>
@@ -52,11 +69,163 @@
       <section id="definition">
         <h1>I. Definition</h1>
         <p>
-          What we're looking at: self-contained, standalone applications built using JavaScript. These differ a lot from
-          the more common JavaScript-powered application. Mainly, but not necessarily:
+          What we're looking at: self-contained, standalone applications built using JavaScript. These differ a lot from the more common JavaScript-powered application. Mainly, but not necessarily, they:
           <ul>
-            <li></li>
+            <li>have their own templates.</li>
+            <li>send/receive data to/from a server (when they do) via JSON or XML.</li>
+            <li>control their own navigation (hashbangs and/or <a href="http://diveintohtml5.org/history.html">pushState</a>).</li>
+            <li>separation between data/view layers.</li>
+            <li>statefulness.</li>
           </ul>
+        </p>
+        <p>Key benefits:</p>
+        <ul>
+          <li>
+            Complete front-end independence</em>. The JavaScript application is merely just another client to the service's API.
+          </li>
+          <li>
+            Once you build up the data layer, the rest is very fast to build.
+          </li>
+          <li>
+            Code sharing between client and server is quickly becoming a reality. See <a href="http://andyet.net/blog/2011/feb/15/re-using-backbonejs-models-on-the-server-with-node/">this article</a>. Also, check <a href="http://nowjs.com/">now.js</a>.
+          </li>
+          <li>
+            <em>NOT DOM ORIENTED DEVELOPMENT.</em>
+          </li>
+        </ul>
+        <p>
+          The essential is that whatever you build should not suck. Apply whatever approach
+          works best given what you're trying to achieve.
+        </p>
+      </section>
+      <section id="our-app">
+        <h1>II. Our application</h1>
+        <p>The main objective in our workshop is understanding how <a href="https://github.com/juliocesar/Listie">Listie</a> works.</p>
+        <p>
+          The app looks simple enough, but it illustrates a bunch of common use cases, such
+          as navigation, view inheritance, collection associations, and preloading data
+          from a server.
+        </p>
+        <p>
+          Go nuts! Clone it, read the source. <em>Write an app based on of it</em>. No amount of 
+          explanation can replace that.
+        </p>
+      </section>
+      
+      <section id="backbone-models">
+        <h1>III. Backbone: Models</h1>
+        <p>
+          They're 50% of your data layer. The other 50% are 
+          <a href="#backbone-collections">collections</a>. A model is what gives your JavaScript
+          awareness of what it's dealing when it comes to raw data. Instead of manipulating
+          pure JavaScript objects carrying properties and values, you got domain logic.
+        </p>
+        <p>For instance:</p>
+        <pre><code>List = Backbone.Model.extend({
+  initialize : function() {
+    var self = this;
+    if (!(self.get('items'))) self.set({ 'items': [] }, { silent: true });
+    _.bindAll(self, 'updateItems');
+    self.Items = new Items;
+    self.Items.bind('reset',  self.updateItems);
+    self.Items.bind('add',    self.updateItems);
+    self.Items.bind('remove', self.updateItems);
+  },
+
+  url : function() { return this.isNew() ? '/lists' : '/lists/' + this.id; },
+
+  updateItems : function() {
+    this.set({ items : this.Items.map(function(item) { return item.get('name'); }) });
+  }
+});</code></pre>
+      <p>Methods declared in <code>extend</code> will exist in all instances.</p>
+      <p>
+        Models don't need collections to exist! There might be cases where you really just
+        want one. E.g.: application settings could be kept in a single model.
+      </p>
+      </section>
+      
+      <section id="backbone-collections">
+        <h1>IV. Backbone: Collections</h1>
+        <p>
+          Collections are groups of models (duh). Ok, they're not just that. They're also another
+          control mechanism that helps you bind stuff that happens to your data so you can get
+          what's on the screen to react to it.
+        </p>
+        <p>
+          Instead of printing arrays directly to the screen, you bind methods to certain events
+          fired when certain things happen to your collection. For instance, `add` gets triggered
+          when a model gets added. Common Backbone use case: rendering an entry on the screen
+          when that happens.
+        </p>
+        <p>
+          Maybe multiple parts of our interface might be interested in updates when a single
+          collection gets updated. Hence tying everything together with events keeps everything
+          nice and decoupled.
+        </p>
+        <p>Example:</p>
+        <pre><code>Lists = Backbone.Collection.extend({
+  url : '/lists',
+
+  initialize : function() {
+    var self = this;
+    Listie.User.bind('change:lists', function(user, lists) { self.reset(lists); });
+  }
+});</code></pre>
+      </section>
+      <section id="backbone-views">
+        <h1>V. Views</h1>
+        <p>
+          Backbone views are weird, because they're not views in the same sense that MVC views
+          are (templates). They're another JavaScript class that defines the presentation
+          behaviour. As in, for example, what happens when you click an element.
+        </p>
+        <p>
+          There are two basic types of views we'll see: views whose purpose is to present
+          one element in a collection, and views that act like components in the screen. Usually,
+          but not always, the former is tied to collection events, and the latter to user-triggered
+          events.
+        </p>
+        <p>Example of a model view:</p>
+        <pre><code>var ItemView = CheckBoxListView.extend({
+  template  : _.template($('#list-item-template').html()),
+
+  check : function() {
+    Listie.Creator.calculateSelected();
+  }
+});</code></pre>
+      <p>It inherits from a class I defined elsewhere called <code>CheckBoxListView</code>:</p>
+      <pre><code>var CheckBoxListView = Backbone.View.extend({
+  tagName   : 'li',
+  events  : {
+    'click input' : 'check'
+  },
+
+  initialize : function() {
+    _.bindAll(this, 'remove');
+    this.model.bind('remove', this.remove);
+    this.model.view = this;
+  },
+
+  render : function() {
+    $(this.el).html(this.template(this.model.toJSON()));
+    return this;
+  }
+});</code></pre>
+      <p>
+        Note how Backbone just hands you a cool inheritance mechanism that Just Works™.
+      </p>
+      <p>
+        As described before, we also have views that control "areas" of our interface. Check
+        <a href="https://github.com/juliocesar/Listie/blob/master/public/js/lists.js#L34">on GitHub</a>
+        the source for the lists browser.
+      </p>
+      </section>
+      <section id="backbone-routes">
+        <h1>VI. Backbone: Routes and Navigation</h1>
+        <p>
+          Backbone carries a `Router` class. This is where the state of your application will
+          live.
         </p>
       </section>
     </section>
